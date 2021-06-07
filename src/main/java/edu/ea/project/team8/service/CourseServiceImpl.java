@@ -32,4 +32,9 @@ public class CourseServiceImpl implements CourseService {
 		repository.save(course);
 	}
 
+	@Override
+	public Course getCourseById(Integer id) {
+		return repository.getById(id);
+	}
+
 }

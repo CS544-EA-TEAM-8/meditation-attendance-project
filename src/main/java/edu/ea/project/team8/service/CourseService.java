@@ -5,6 +5,7 @@ import java.util.List;
 import edu.ea.project.team8.domain.Course;
 
 public interface CourseService {
-	public List<Course> findAll();
-	public void addCourse(Course course);
+	 List<Course> findAll();
+	void addCourse(Course course);
+	 Course getCourseById(Integer id);
 }
