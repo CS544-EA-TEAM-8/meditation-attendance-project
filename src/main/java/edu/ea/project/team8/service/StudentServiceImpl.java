@@ -14,33 +14,55 @@ import edu.ea.project.team8.domain.Student;
 
 
 @Service("studentService")
-@Transactional(propagation=Propagation.REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED)
 public class StudentServiceImpl implements StudentService {
-	private StudentRepository repository;
+    @Autowired
+    StudentRepository studentRepository;
 
-	@Autowired
-	public StudentServiceImpl(StudentRepository repository) {
-		this.repository = repository;
-	}
+    public StudentServiceImpl(StudentRepository repository) {
+        this.studentRepository = repository;
+    }
 
-	@Override
-	public List<Student> findAll() {
-		return repository.findAll();
-	}
+    @Override
+    public List<Student> findAll() {
+        return studentRepository.findAll();
+    }
 
-	@Override
-	public List<Course> findAllCoursesTaking(Integer id) {
-		return repository.findAllCoursesTaking(id, LocalDate.now());
-	}
+    //list of course the faculty can see, id is of faculty.
+    @Override
+    public List<Course> findAllCourse(Integer id) {
+        return studentRepository.findAllCourses(id);
+    }
 
-	@Override
-	public List<Course> findAllCoursesTaken(Integer id) {
-		return repository.findAllCoursesTakenBefore(id, LocalDate.now());
-	}
+    @Override
+    public List<Course> findAllCoursesTaking(Integer id) {
+        return studentRepository.findAllCoursesTaking(id, LocalDate.now());
+    }
 
-	@Override
-	public Student addStudent(Student student) {
-		return repository.save(student);
-	}
+    @Override
+    public List<Course> findAllCoursesTaken(Integer id) {
+        return studentRepository.findAllCoursesTakenBefore(id, LocalDate.now());
+    }
+
+    @Override
+    public void addStudent(Student student) {
+        studentRepository.save(student);
+    }
+
+    @Override
+    public Student getStudentById(Integer id) {
+        return studentRepository.getById(id);
+    }
+
+    @Override
+    public void updateStudent(Student student) {
+        studentRepository.save(student);
+    }
+
+    @Override
+    public void deleteStudent(Integer id) {
+        studentRepository.deleteById(id);
+    }
+
 
 }
