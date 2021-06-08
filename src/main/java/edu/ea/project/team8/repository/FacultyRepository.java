@@ -17,14 +17,14 @@ import java.util.List;
 @Transactional(propagation = Propagation.MANDATORY)
 public interface FacultyRepository extends JpaRepository<Faculty, Integer> {
 
-    @Query("select co.course from CourseOffering co where co.faculty.id =: id and co.beginDate > :date and co.endDate < :date ")
+    @Query("select co.course from CourseOffering co where co.faculty.id =:id and co.beginDate > :date and co.endDate < :date ")
     Course getCourseOfferingNowTeaching(@Param("id") Integer id, @Param("date") LocalDate date);
 
-    @Query("select co.course from CourseOffering co  where co.faculty.id =: id and co.beginDate > :dt")
+    @Query("select co.course from CourseOffering co  where co.faculty.id =:id and co.beginDate > :dt")
     List<Course> getCourseOfferingBeforeSixMonth(@Param("id") Integer id, @Param("dt") LocalDate date);
 
 //returns the list of student that are registered in the class, now we need to add the list of attendance of each student to this
-    @Query("select r.student from Registration r join CourseOffering co where co.faculty.id = : id and co.beginDate > : d and co.endDate < :d ")
-    List<Student> getAllStudentsTakingCourseOffering(Integer id, LocalDate date);
+//    @Query("select r.student from Registration r join CourseOffering co where co.faculty.id = :id and co.beginDate > :d and co.endDate < :d ")
+//    List<Student> getAllStudentsTakingCourseOffering(Integer id, LocalDate date);
 
 }
