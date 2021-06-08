@@ -15,16 +15,32 @@ import edu.ea.project.team8.domain.Location;
 @Transactional(propagation=Propagation.REQUIRED)
 public class LocationServiceImpl implements LocationService {
 
-	private LocationRepository repository;
+	private LocationRepository locationRepository;
 
-	@Autowired
-	public LocationServiceImpl(LocationRepository repository) {
-		this.repository = repository;
+
+	@Override
+	public List<Location> getAllLocation() {
+		return locationRepository.findAll();
 	}
 
 	@Override
-	public List<Location> findAll() {
-		return repository.findAll();
+	public Location findLocationById(Integer id) {
+		return locationRepository.getById(id);
 	}
 
+	@Override
+	public void addLocation(Location location) {
+		locationRepository.save(location);
+	}
+
+	@Override
+	public Location updateLocation(Location location) {
+		return locationRepository.save(location);
+	}
+
+	@Override
+	public void deleteLocation(Integer id) {
+		locationRepository.deleteById(id);
+
+	}
 }
