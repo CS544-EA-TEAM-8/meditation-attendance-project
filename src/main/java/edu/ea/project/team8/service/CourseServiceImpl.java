@@ -1,5 +1,7 @@
 package edu.ea.project.team8.service;
 
+
+
 import java.util.List;
 
 import edu.ea.project.team8.repository.CourseRepository;
@@ -30,6 +32,11 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public void addCourse(Course course) {
 		repository.save(course);
+	}
+
+	@Override
+	public Course getCourseById(Integer id) {
+		return repository.getById(id);
 	}
 
 }
