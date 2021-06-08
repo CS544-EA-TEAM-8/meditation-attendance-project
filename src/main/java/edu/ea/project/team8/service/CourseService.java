@@ -5,7 +5,14 @@ import java.util.List;
 import edu.ea.project.team8.domain.Course;
 
 public interface CourseService {
-	 List<Course> findAll();
+	List<Course> findAll();
+
 	void addCourse(Course course);
-	 Course getCourseById(Integer id);
+
+	Course getCourseById(Integer id);
+
+	void updateCourse(Course course);
+
+	void deleteCourse(Integer id);
+
 }
