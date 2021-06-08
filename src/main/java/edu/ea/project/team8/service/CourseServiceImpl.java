@@ -15,26 +15,36 @@ import edu.ea.project.team8.domain.Course;
 @Transactional(propagation=Propagation.REQUIRED)
 public class CourseServiceImpl implements CourseService {
 
-	private CourseRepository repository;
+	private CourseRepository courseRepository;
 
 	@Autowired
 	public CourseServiceImpl(CourseRepository repository) {
-		this.repository = repository;
+		this.courseRepository = repository;
 	}
 
 	@Override
 	public List<Course> findAll() {
-		return repository.findAll();
+		return courseRepository.findAll();
 	}
 
 	@Override
 	public void addCourse(Course course) {
-		repository.save(course);
+		courseRepository.save(course);
 	}
 
 	@Override
 	public Course getCourseById(Integer id) {
-		return repository.getById(id);
+		return courseRepository.getById(id);
+	}
+
+	@Override
+	public void updateCourse(Course course) {
+		courseRepository.save(course);
+	}
+
+	@Override
+	public void deleteCourse(Integer id) {
+		courseRepository.deleteById(id);
 	}
 
 }
