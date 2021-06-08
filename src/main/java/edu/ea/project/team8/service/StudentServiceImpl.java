@@ -16,9 +16,10 @@ import edu.ea.project.team8.domain.Student;
 @Service("studentService")
 @Transactional(propagation = Propagation.REQUIRED)
 public class StudentServiceImpl implements StudentService {
-    @Autowired
+
     StudentRepository studentRepository;
 
+    @Autowired
     public StudentServiceImpl(StudentRepository repository) {
         this.studentRepository = repository;
     }
