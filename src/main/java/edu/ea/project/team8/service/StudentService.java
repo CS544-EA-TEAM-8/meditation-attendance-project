@@ -6,8 +6,19 @@ import edu.ea.project.team8.domain.Course;
 import edu.ea.project.team8.domain.Student;
 
 public interface StudentService {
-	public List<Student> findAll();
-	public List<Course> findAllCoursesTaking(Integer id);
-	public List<Course> findAllCoursesTaken(Integer id);
-	public Student addStudent(Student student);
+    List<Student> findAll();
+
+    List<Course> findAllCourse(Integer id);
+
+    List<Course> findAllCoursesTaking(Integer id);
+
+    List<Course> findAllCoursesTaken(Integer id);
+
+    void addStudent(Student student);
+
+    Student getStudentById(Integer id);
+
+    void updateStudent(Student student);
+
+    void deleteStudent(Integer id);
 }
