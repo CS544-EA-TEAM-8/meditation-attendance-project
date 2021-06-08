@@ -20,37 +20,37 @@ public class StudentController {
     }
 
     @GetMapping("/students/{id}")
-    public Student getStudent(@PathVariable Integer id) {
+    public Student getStudent(@PathVariable("id") Integer id) {
         return studentService.getStudentById(id);
     }
 
-    @PostMapping("/addStudent")
-    public void addStudent(Student student) {
+    @PostMapping("/students")
+    public void addStudent(@RequestBody Student student) {
         studentService.addStudent(student);
     }
 
-    @DeleteMapping("/deleteStudent")
-    public void deleteStudent(Integer id) {
+    @DeleteMapping("/students/{id}")
+    public void deleteStudent(@PathVariable("id") Integer id) {
         studentService.deleteStudent(id);
     }
 
-    @GetMapping("students/courses")
-    public List<Course> findAllCoursesTaken(Integer id) {
+    @GetMapping("students/{id}/course")
+    public List<Course> findAllCoursesTaken(@PathVariable("id") Integer id) {
         return studentService.findAllCoursesTaken(id);
     }
 
-    @GetMapping("student/availableCourses")
-    public List<Course> findAllCourse(Integer id) {
+    @GetMapping("students/{id}/courses")
+    public List<Course> findAllCourseTaken(@PathVariable("id") Integer id) {
         return studentService.findAllCourse(id);
     }
 
-    @GetMapping("students/coursesTillNow/")
-    public List<Course> findAllCoursesTaking(Integer id) {
+    @GetMapping("student/{id}/courses")
+    public List<Course> findAllCoursesTaking(@PathVariable("id") Integer id) {
         return studentService.findAllCoursesTaking(id);
     }
 
-    @PutMapping("/updateStudent")
-    public void updateStudent(Student student) {
+    @PutMapping("/students")
+    public void updateStudent(@RequestBody Student student) {
         studentService.updateStudent(student);
     }
 }
