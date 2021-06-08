@@ -13,16 +13,16 @@ import java.util.List;
 @RestController
 public class FacultyController {
 
-//    @Autowired
-//    FacultyService facultyService;
+    @Autowired
+    FacultyService facultyService;
 
-//    @GetMapping("/faculty/{id}/courses")
-//    Course getCourseFacultyTeaching(@PathVariable Integer id) {
-//        return facultyService.getCourseNowTeaching(id, LocalDate.now());
-//    }
+    @GetMapping("/faculty/{id}/course")
+    Course getCourseFacultyTeaching(@PathVariable("id") Integer id) {
+        return facultyService.getCourseNowTeaching(id, LocalDate.now());
+    }
 
-//    @GetMapping("/faculty/{id}/courseList")
-//    List<Course> getCourseFacultyTeachingSixMonth(@PathVariable Integer id) {
-//        return facultyService.courseFromSixMonths(id, LocalDate.now());
-//    }
+    @GetMapping("/faculties/{id}/courses")
+    List<Course> getCourseFacultyTeachingSixMonth(@PathVariable("id") Integer id) {
+        return facultyService.courseFromSixMonths(id, LocalDate.now());
+    }
 }
