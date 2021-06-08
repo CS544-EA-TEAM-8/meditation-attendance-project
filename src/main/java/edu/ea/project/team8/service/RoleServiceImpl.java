@@ -11,21 +11,37 @@ import java.util.List;
 
 @Service("roleService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class RoleServiceImpl implements RoleService{
-	private RoleRepository repository;
+public class RoleServiceImpl implements RoleService {
+    private RoleRepository roleRepository;
 
-	@Autowired
-	public RoleServiceImpl(RoleRepository repository) {
-		this.repository = repository;
-	}
+    @Autowired
+    public RoleServiceImpl(RoleRepository repository) {
 
-	@Override
-	public List<Role> findAll() {
-		return repository.findAll();
-	}
+        this.roleRepository = repository;
+    }
 
-	@Override
-	public void addRole(Role role) {
-		repository.save(role);
-	}
+    @Override
+    public List<Role> findAllRoles() {
+        return roleRepository.findAll();
+    }
+
+    @Override
+    public Role findRoleById(Integer id) {
+        return roleRepository.getById(id);
+    }
+
+    @Override
+    public void addRole(Role role) {
+        roleRepository.save(role);
+    }
+
+    @Override
+    public void deleteRole(Integer id) {
+        roleRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateRole(Role role) {
+        roleRepository.save(role);
+    }
 }
