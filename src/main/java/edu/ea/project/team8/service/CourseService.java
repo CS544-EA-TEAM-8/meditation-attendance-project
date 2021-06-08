@@ -7,4 +7,6 @@ import edu.ea.project.team8.domain.Course;
 public interface CourseService {
 	public List<Course> findAll();
 	public void addCourse(Course course);
+	public Course getCourseById(Integer id);
+
 }
