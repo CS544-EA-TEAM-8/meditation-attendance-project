@@ -8,7 +8,8 @@ import java.util.List;
 
 
 public interface FacultyService {
-     Course getCourseNowTeaching(Integer id, LocalDate date);
-     List<Course> courseFromSixMonths(Integer id, LocalDate date);
+    Course getCourseNowTeaching(Integer id, LocalDate date);
+
+    List<Course> courseFromSixMonths(Integer id, LocalDate date);
 
 }
