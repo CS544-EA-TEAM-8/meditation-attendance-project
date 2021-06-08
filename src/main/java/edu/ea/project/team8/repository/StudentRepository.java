@@ -9,22 +9,23 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Duration;
+
 import java.time.LocalDate;
 import java.util.List;
 
 
 @Repository("studentRepository")
-@Transactional(propagation=Propagation.MANDATORY)
+@Transactional(propagation = Propagation.MANDATORY)
 public interface StudentRepository extends JpaRepository<Student, Integer> {
 
 
-	@Query("SELECT co.course FROM CourseOffering co join co.registrations rgs WHERE rgs.student.id = :id")
-	 List<Course> findAllCourses(@Param("id") Integer id);
+    @Query("SELECT co.course FROM CourseOffering co join co.registrations rgs WHERE rgs.student.id = :id")
+    List<Course> findAllCourses(@Param("id") Integer id);
 
-	@Query("SELECT co.course FROM CourseOffering co join co.registrations rgs WHERE rgs.student.id = :id and co.endDate > :dt and co.beginDate < :dt")
-	 List<Course> findAllCoursesTaking(@Param("id") Integer id, @Param("dt") LocalDate date);
+    @Query("SELECT co.course FROM CourseOffering co join co.registrations rgs WHERE rgs.student.id = :id and co.endDate > :dt and co.beginDate < :dt")
+    List<Course> findAllCoursesTaking(@Param("id") Integer id, @Param("dt") LocalDate date);
 
-	@Query("SELECT co.course FROM CourseOffering co join co.registrations rgs WHERE rgs.student.id = :id and co.endDate < :dt")
-	 List<Course> findAllCoursesTakenBefore(@Param("id") Integer id, @Param("dt") LocalDate date);
+    @Query("SELECT co.course FROM CourseOffering co join co.registrations rgs WHERE rgs.student.id = :id and co.endDate < :dt")
+    List<Course> findAllCoursesTakenBefore(@Param("id") Integer id, @Param("dt") LocalDate date);
+
 }
