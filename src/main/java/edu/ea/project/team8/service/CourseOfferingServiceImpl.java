@@ -15,21 +15,37 @@ import edu.ea.project.team8.domain.CourseOffering;
 @Transactional(propagation=Propagation.REQUIRED)
 public class CourseOfferingServiceImpl implements CourseOfferingService {
 
-	private CourseOfferingRepository repository;
+	private CourseOfferingRepository courseOfferingRepository;
 
 	@Autowired
-	public CourseOfferingServiceImpl(CourseOfferingRepository repository) {
-		this.repository = repository;
+	public CourseOfferingServiceImpl(CourseOfferingRepository courseOfferingRepository) {
+		this.courseOfferingRepository = courseOfferingRepository;
 	}
 
 	@Override
-	public List<CourseOffering> findAll() {
-		return repository.findAll();
+	public List<CourseOffering> getAllCourseOffering() {
+		return courseOfferingRepository.findAll();
+	}
+
+	@Override
+	public CourseOffering getCourseOfferingById(Integer id) {
+		return courseOfferingRepository.getById(id);
+	}
+
+	@Override
+	public void deleteCourseOffering(Integer id) {
+		courseOfferingRepository.deleteById(id);
 	}
 
 	@Override
 	public void addCourseOffering(CourseOffering offering) {
-		repository.save(offering);
+
+		courseOfferingRepository.save(offering);
+	}
+
+	@Override
+	public CourseOffering updateCourseOffering(CourseOffering courseOffering) {
+		return courseOfferingRepository.save(courseOffering);
 	}
 
 }
