@@ -18,22 +18,22 @@ public class CourseController {
     }
 
     @GetMapping("/courses/{id}")
-    public Course getCourse(@PathVariable Integer id) {
+    public Course getCourse(@PathVariable("id") Integer id) {
         return courseService.getCourseById(id);
     }
 
-    @PostMapping("/addCourse")
-    public void addCourse(Course course) {
+    @PostMapping("/courses")
+    public void addCourse(@RequestBody Course course) {
         courseService.addCourse(course);
     }
 
-    @DeleteMapping("/deleteCourse")
-    public void deleteCourse(Integer id) {
+    @DeleteMapping("/courses/{id}")
+    public void deleteCourse(@PathVariable("id") Integer id) {
         courseService.deleteCourse(id);
     }
 
-    @PutMapping("/updateCourse")
-    public void updateCourse(Course course) {
+    @PutMapping("/courses")
+    public void updateCourse(@RequestBody Course course) {
         courseService.updateCourse(course);
     }
 }
