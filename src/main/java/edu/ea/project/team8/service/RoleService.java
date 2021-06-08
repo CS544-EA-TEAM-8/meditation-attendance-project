@@ -5,6 +5,13 @@ import edu.ea.project.team8.domain.Role;
 import java.util.List;
 
 public interface RoleService {
-	public List<Role> findAll();
-	public void addRole(Role role);
+    List<Role> findAllRoles();
+
+    Role findRoleById(Integer id);
+
+    void addRole(Role role);
+
+    void deleteRole(Integer id);
+
+    void updateRole(Role role);
 }
