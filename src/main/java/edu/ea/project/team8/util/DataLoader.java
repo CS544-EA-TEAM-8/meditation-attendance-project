@@ -106,8 +106,7 @@ public class DataLoader implements CommandLineRunner {
         admin.addRole(roles.get(0));
         System.out.println(admin);
         userRepository.save(admin);
-        User personnel = new User("personnel", "faculty", "Faculty", "Faculty", "Faculty@miu.edu", "Personnel");
-        personnel.addRole(roles.get(2));
+        User personnel = new User("personnel", "personnel", "Personnel", "Personnel", "Personnel@miu.edu", "Personnel");
         personnel.addRole(roles.get(3));
         userRepository.save(personnel);
 
@@ -117,7 +116,7 @@ public class DataLoader implements CommandLineRunner {
         //  Course course, String period, LocalDate beginDate, LocalDate endDate, int capacity, Faculty faculty
         List<Course> courses = courseRepository.findAll();
         List<Faculty> faculties = facultyRepository.findAll();
-        CourseOffering febOffering = courseRepository.findByCode("CS545").createOffering("Spring", LocalDate.of(2021, Month.FEBRUARY, 1), LocalDate.of(2021, Month.FEBRUARY, 27), 30, faculties.get(0));
+        CourseOffering febOffering = courseRepository.findByCode("CS545").createOffering("Spring", LocalDate.of(2021, Month.JUNE, 10), LocalDate.of(2021, Month.JUNE, 27), 30, faculties.get(0));
         CourseOffering aprilOffering = courseRepository.findByCode("CS525").createOffering("Spring", LocalDate.of(2021, Month.FEBRUARY, 1), LocalDate.of(2021, Month.FEBRUARY, 27), 30, faculties.get(1));
         CourseOffering mayOffering = courseRepository.findByCode("FOR506").createOffering("Spring", LocalDate.of(2021, Month.FEBRUARY, 1), LocalDate.of(2021, Month.FEBRUARY, 27), 30, faculties.get(2));
         CourseOffering juneOffering = courseRepository.findByCode("CS544").createOffering("Spring", LocalDate.of(2021, Month.FEBRUARY, 1), LocalDate.of(2021, Month.FEBRUARY, 27), 30, faculties.get(3));
@@ -129,11 +128,11 @@ public class DataLoader implements CommandLineRunner {
         List<Role> roles = roleRepository.findAll();
         //  String firstName, String lastName, String emailAddress, String studentId, String visaStatus, String status, String track, LocalDate entryDate, String barcode
         Student sam = new Student("samson", "zaid", "Samson Tekleab", "Zaid", "szaid@miu.edu", "111-11-1111", "F1", "Online", "MSCS", LocalDate.of(2021, Month.JANUARY, 26), "abcdefghijklm");
-        sam.addRole(roles.get(2));
+        sam.addRole(roles.get(1));
         Student ghirmay = new Student("ghirmay", "ghirmay", "ghirmay", "shinash", "gshinash@miu.edu", "111-11-1112", "F1", "Online", "MSCS", LocalDate.of(2021, Month.JANUARY, 26), "abcd");
-        ghirmay.addRole(roles.get(2));
+        ghirmay.addRole(roles.get(1));
         Student efrem = new Student("efrem", "efrem", "efrem", "abrehe", "eabrehe@miu.edu", "111-11-1113", "F1", "Online", "MSCS", LocalDate.of(2021, Month.JANUARY, 26), "abce");
-        efrem.addRole(roles.get(2));
+        efrem.addRole(roles.get(1));
         studentRepository.saveAll(List.of(sam, ghirmay, efrem));
     }
 
@@ -190,8 +189,8 @@ public class DataLoader implements CommandLineRunner {
 
     private void createTimeslots() {
         //  String code, String title, LocalTime startTime, LocalTime endTime
-        Timeslot amSession = new Timeslot("AM", "AM Session", LocalTime.of(10, 0), LocalTime.of(12, 30));
-        Timeslot pmSession = new Timeslot("PM", "PM Session", LocalTime.of(14, 0), LocalTime.of(15, 0));
+        Timeslot amSession = new Timeslot("AM", "AM Session", LocalTime.of(10, 0), LocalTime.of(11, 30));
+        Timeslot pmSession = new Timeslot("PM", "PM Session", LocalTime.of(12, 0), LocalTime.of(19, 0));
 
         timeslotRepository.saveAll(List.of(amSession, pmSession));
     }

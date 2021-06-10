@@ -15,9 +15,10 @@ import java.util.List;
 @Transactional(propagation = Propagation.MANDATORY)
 public interface RegistrationRepository extends JpaRepository<Registration, Integer> {
 
-	@Query("SELECT new edu.ea.project.team8.domain.Attendance(rg.student, sc, at.present, at.id) " +
+	@Query("SELECT distinct new edu.ea.project.team8.domain.Attendance(rg.student, sc, at.present, at.id) " +
 			"FROM Registration rg left join rg.offering.sessions sc left join Attendance at" +
 			" on at.classSession.id = sc.id and at.student.id = rg.student.id" +
-			" WHERE sc.id = :sid order by rg.student.lastName")
+			" WHERE sc.id = :sid ")
 	List<Attendance> getAttendances(@Param("sid") Integer sid);
+	// order by rg.student.lastName
 }

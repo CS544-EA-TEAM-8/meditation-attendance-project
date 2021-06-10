@@ -71,6 +71,6 @@ public class CourseOfferingServiceImpl extends BaseServiceImpl<CourseOffering, C
 
     @Override
     public List<CourseOffering> findNotRegisteredByStudent(Integer sid) {
-        return repository.findNotRegisteredByStudent(sid, LocalDate.now());
+        return repository.findNotRegisteredByStudent(sid, LocalDate.now().minusMonths(6));
     }
 }

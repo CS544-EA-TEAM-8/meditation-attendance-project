@@ -28,7 +28,7 @@ public interface CourseOfferingRepository extends JpaRepository<CourseOffering, 
 	@Query("SELECT cof from CourseOffering cof join cof.registrations rg WHERE rg.student.id = :sid and cof.endDate > :after")
 	List<CourseOffering> findAfterByStudent(@Param("sid") Integer sid, @Param("after") LocalDate after);
 
-	@Query("SELECT cof from CourseOffering cof join cof.registrations rg WHERE rg.student.id <> :sid and cof.endDate > :after")
+	@Query("SELECT cof from CourseOffering cof left join Registration rg on cof.id = rg.offering.id and rg.student.id = :sid WHERE rg.student.id = null and cof.endDate > :after")
 	List<CourseOffering> findNotRegisteredByStudent(@Param("sid") Integer sid, @Param("after") LocalDate after);
 
 	@Query("SELECT rg.student from CourseOffering cof join cof.registrations rg WHERE cof.id = :coid")
